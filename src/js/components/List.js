@@ -14,7 +14,6 @@ export default class List extends React.Component {
     this.addItem = this.addItem.bind(this);
   }
   addItem(e){
-    e.persist();
     this.setState({
       listItems: this.state.listItems.concat([{id: this.state.total+1, text: e.target.previousSibling.value}]),
       total: this.state.total + 1
@@ -22,11 +21,13 @@ export default class List extends React.Component {
     console.log(e.target.previousSibling.value);
   }
   render() {
+    const listItems = this.state.listItems.map((item) =>
+      <ListItem key={item.id} text={item.text}/>);
     return (
       <div className="list">
         <AddItem addItem={this.addItem}/>
         <ul className="list-content">
-          <ListItem text="Something to do"/>
+          {listItems}
         </ul>
       </div>
     )
