@@ -18,7 +18,7 @@ export default class List extends React.Component {
       listItems: this.state.listItems.concat([{id: this.state.total+1, text: e.target.previousSibling.value}]),
       total: this.state.total + 1
     })
-    console.log(e.target.previousSibling.value);
+    e.target.previousSibling.value = '';
   }
   render() {
     const listItems = this.state.listItems.map((item) =>
