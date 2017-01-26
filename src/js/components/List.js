@@ -6,10 +6,8 @@ export default class List extends React.Component {
   constructor() {
     super()
     this.state = {
-      listItems:[
-        {id:1, text:'Something to do'}
-      ],
-      total: 1
+      listItems:[],
+      total: 0
     }
     this.addItem = this.addItem.bind(this);
     this.deleteItem = this.deleteItem.bind(this);
