@@ -70,7 +70,8 @@ i {
       height: 50px;
       line-height: 50px;
       float: right;
-      color: #d00; }
+      color: #d00;
+      cursor: pointer; }
   .container .add-item input {
     border: none;
     outline: none;
