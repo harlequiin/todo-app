@@ -12,6 +12,7 @@ export default class List extends React.Component {
       total: 1
     }
     this.addItem = this.addItem.bind(this);
+    this.deleteItem = this.deleteItem.bind(this);
   }
   addItem(e){
     this.setState({
@@ -20,9 +21,18 @@ export default class List extends React.Component {
     })
     e.target.previousSibling.value = '';
   }
+  deleteItem(id){
+    this.setState((prevState)=>(
+      {listItems: prevState.listItems.filter((item)=>
+        item.id !== id)}
+    ))
+  }
   render() {
     const listItems = this.state.listItems.map((item) =>
-      <ListItem key={item.id} text={item.text}/>);
+      <ListItem key={item.id} 
+                id={item.id} 
+                text={item.text} 
+                deleteItem={this.deleteItem.bind(this, item.id)}/>);
     return (
       <div className="list">
         <AddItem addItem={this.addItem}/>
