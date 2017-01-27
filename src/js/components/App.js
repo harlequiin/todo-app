@@ -9,7 +9,7 @@ export default class App extends React.Component {
       <div className="container">
         <h1>ToDo list</h1>
         <button className="save-list">Save list</button>
-        <List/>
+        {this.props.children}
       </div>
     )
   }
