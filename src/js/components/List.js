@@ -33,6 +33,7 @@ export default class List extends React.Component {
                 deleteItem={this.deleteItem.bind(this, item.id)}/>);
     return (
       <div className="list">
+      <button className="save-list">Save list</button>
         <AddItem addItem={this.addItem}/>
         <ul className="list-content">
           {listItems}
