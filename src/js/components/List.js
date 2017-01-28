@@ -30,6 +30,7 @@ export default class List extends React.Component {
       <ListItem key={item.id} 
                 id={item.id} 
                 text={item.text} 
+                title={'Delete Item'}
                 deleteItem={this.deleteItem.bind(this, item.id)}/>);
     return (
       <div className="list">
