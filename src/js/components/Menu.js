@@ -3,14 +3,31 @@ import {Link} from 'react-router';
 import ListItem from './ListItem';
 
 export default class Menu extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      lists: this.props.route.data
+    }
+  }
+  deleteItem(id) {
+    this.setState((prevState)=>(
+      {lists: prevState.lists.filter((list) => 
+        list.id != id)}
+    ))
+  }
+  componentWillUnmount() {
+    console.log('Menu update');
+    this.props.route.deleteList(this.state.lists);
+  }
   render() {
-    const data = this.props.route.data;
-    const listItems = data.map((list) => 
+    const lists = this.state.lists;
+    const listItems = lists.map((list) => 
       <ListItem text={<Link to={"/"+list.id}>{list.name}</Link>}
                 key={list.id}
                 id={list.id}
                 total={list.total}
-                title={'Delete List'}/>)
+                title={'Delete List'}
+                deleteItem={this.deleteItem.bind(this, list.id)}/>)
     return (
       <div className="list">
       <button className="save-list">Choose a list</button>
