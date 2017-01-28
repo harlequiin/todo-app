@@ -3,14 +3,15 @@ import AddItem from './AddItem';
 import ListItem from './ListItem';
 
 export default class List extends React.Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
-      listItems:[],
-      total: 0
+      listItems: this.props.route.data[this.props.params.id].list,
+      total: this.props.route.data[this.props.params.id].total
     }
     this.addItem = this.addItem.bind(this);
     this.deleteItem = this.deleteItem.bind(this);
+    this.saveList = this.saveList.bind(this);
   }
   addItem(e){
     this.setState({
