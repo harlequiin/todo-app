@@ -52,20 +52,12 @@ class AppRoute extends React.Component {
         ]
     }
   }
-  saveList(id, list, total){
-    this.state.lists
-    this.setState((prevState) =>{
-      prevState.lists[id].list = list;
-      prevState.lists[id].total = total;
-      return prevState;
-    })
-  }
   render() {
     return (
       <Router history={hashHistory}>
         <Route path="/" component={App}>
           <IndexRoute data={this.state.lists} component={Menu}/>
-          <Route path="/:id" data={this.state.lists} saveList={this.saveList} component={List}/>
+          <Route path="/:id" data={this.state.lists} component={List}/>
         </Route>
       </Router>
     );
