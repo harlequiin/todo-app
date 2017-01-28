@@ -12,7 +12,6 @@ export default class List extends React.Component {
     }
     this.addItem = this.addItem.bind(this);
     this.deleteItem = this.deleteItem.bind(this);
-    this.saveList = this.saveList.bind(this);
   }
   addItem(e){
     this.setState({
@@ -27,7 +26,7 @@ export default class List extends React.Component {
         item.id !== id)}
     ))
   }
-  saveList() {
+  componentDidUpdate() {
     this.props.route.saveList(this.props.params.id, this.state.total, this.state.listItems);
   }
   render() {
@@ -42,7 +41,6 @@ export default class List extends React.Component {
       <Link to="/">
         <button className="save-list">Return to Lists</button>
       </Link>
-      <button className="save-list" onClick={this.saveList}>Save list</button>
         <AddItem addItem={this.addItem}/>
         <ul className="list-content">
           {listItems}
