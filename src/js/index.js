@@ -30,7 +30,7 @@ class AppRoute extends React.Component {
         },
         {
           name: 'Chores',
-          id: 0,
+          id: 1,
           total: 4,
           list: [{
             id:0,
@@ -56,26 +56,7 @@ class AppRoute extends React.Component {
     return (
       <Router history={hashHistory}>
         <Route path="/" component={App}>
-          <IndexRoute component={Menu}/>
-        </Route>
-      </Router>
-    );
-  }
-}
-
-ReactDOM.render(
-  <AppRoute/>, 
-  document.getElementById('app')
-)
-
-        ]
-    }
-  }
-  render() {
-    return (
-      <Router history={hashHistory}>
-        <Route path="/" component={App}>
-          <IndexRoute component={Menu}/>
+          <IndexRoute data={this.state.lists}component={Menu}/>
         </Route>
       </Router>
     );

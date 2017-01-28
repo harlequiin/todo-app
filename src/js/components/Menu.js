@@ -1,32 +1,21 @@
 import React from 'react'
+import ListItem from './ListItem';
 
 export default class Menu extends React.Component {
   render() {
+    const data = this.props.route.data;
+    const listItems = data.map((list) => 
+      <ListItem text={list.name}
+                key={list.id}
+                id={list.id}
+                total={list.total}/>)
     return (
       <div className="list">
-      <button className="save-list">Choose list</button>
+      <button className="save-list">Choose a list</button>
         <ul className="list-content">
-          <li className="list-item">
-            <div className="list-item-content">
-              <p className="list-item-text">Yo, wassup</p>
-              <i className="delete-item-icon" title="delete item">&#10006;</i>
-            </div>
-          </li>
-          <li className="list-item">
-            <div className="list-item-content">
-              <p className="list-item-text">Yo, wassup</p>
-              <i className="delete-item-icon" title="delete item">&#10006;</i>
-            </div>
-          </li>
-          <li className="list-item">
-            <div className="list-item-content">
-              <p className="list-item-text">Yo, wassup</p>
-              <i className="delete-item-icon" title="delete item">&#10006;</i>
-            </div>
-          </li>
+          {listItems}
         </ul>
       </div>
-      
     );
   }
 }
