@@ -8,7 +8,8 @@ export default class Menu extends React.Component {
       <ListItem text={list.name}
                 key={list.id}
                 id={list.id}
-                total={list.total}/>)
+                total={list.total}
+                title={'Delete List'}/>)
     return (
       <div className="list">
       <button className="save-list">Choose a list</button>
