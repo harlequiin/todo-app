@@ -1,6 +1,7 @@
 import React from 'react';
 import AddItem from './AddItem';
 import ListItem from './ListItem';
+import {Link} from 'react-router'
 
 export default class List extends React.Component {
   constructor(props) {
@@ -38,6 +39,9 @@ export default class List extends React.Component {
                 deleteItem={this.deleteItem.bind(this, item.id)}/>);
     return (
       <div className="list">
+      <Link to="/">
+        <button className="save-list">Return to Lists</button>
+      </Link>
       <button className="save-list" onClick={this.saveList}>Save list</button>
         <AddItem addItem={this.addItem}/>
         <ul className="list-content">
