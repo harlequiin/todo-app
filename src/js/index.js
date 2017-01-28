@@ -46,7 +46,13 @@ let Store = {
       }]
     }],
     saveList(id, total, list) {
-      this.lists[id].list = list;
+      const index = this.lists.findIndex((list) =>
+        list.id == id);
+      this.lists[index].list = list;
+    },
+    deleteList(newlists) {
+      this.lists = newlists;
+      console.log(this.lists)
     }
 };
 
@@ -55,7 +61,9 @@ class AppRoute extends React.Component {
     return (
       <Router history={hashHistory}>
         <Route path="/" component={App}>
-          <IndexRoute data={Store.lists} component={Menu}/>
+          <IndexRoute data={Store.lists} 
+                      component={Menu}
+                      deleteList={Store.deleteList.bind(Store)}/>
           <Route path="/:id" 
                  data={Store.lists} 
                  component={List}
