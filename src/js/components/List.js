@@ -11,7 +11,6 @@ export default class List extends React.Component {
     }
     this.addItem = this.addItem.bind(this);
     this.deleteItem = this.deleteItem.bind(this);
-    this.saveList = this.saveList.bind(this);
   }
   addItem(e){
     this.setState({
