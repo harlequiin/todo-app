@@ -26,7 +26,7 @@ export default class List extends React.Component {
         item.id !== id)}
     ))
   }
-  componentDidUpdate() {
+  componentDidUpdate(prevProps) {
     this.props.route.saveList(this.props.params.id, this.state.total, this.state.listItems);
   }
   render() {
