@@ -26,9 +26,49 @@ class AppRoute extends React.Component {
           {
             id:2,
             text: 'Buy milk'
-          }
-          ]
-        }]
+          }]
+        },
+        {
+          name: 'Chores',
+          id: 0,
+          total: 4,
+          list: [{
+            id:0,
+            text: 'Clean the bedroom'
+          },
+          {
+            id:1,
+            text: 'Mow the lawn'
+          },
+          {
+            id:2,
+            text: 'Fix the sink'
+          },
+          {
+            id:4,
+            text: 'Fix washing machine'
+          }]
+        }
+        ]
+    }
+  }
+  render() {
+    return (
+      <Router history={hashHistory}>
+        <Route path="/" component={App}>
+          <IndexRoute component={Menu}/>
+        </Route>
+      </Router>
+    );
+  }
+}
+
+ReactDOM.render(
+  <AppRoute/>, 
+  document.getElementById('app')
+)
+
+        ]
     }
   }
   render() {
