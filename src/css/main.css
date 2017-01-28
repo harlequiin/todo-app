@@ -30,6 +30,11 @@ i {
   display: inline-block;
   font-style: normal; }
 
+a {
+  text-decoration: none; }
+  a:visited {
+    color: #333; }
+
 /************ */
 .container {
   width: 100%;
