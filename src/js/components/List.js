@@ -6,9 +6,12 @@ import {Link} from 'react-router'
 export default class List extends React.Component {
   constructor(props) {
     super(props)
+    const index = this.props.route.data.findIndex((list) =>
+      list.id == this.props.params.id);
     this.state = {
-      listItems: this.props.route.data[this.props.params.id].list,
-      total: this.props.route.data[this.props.params.id].total
+      // fix filtering items: arrays not working
+      listItems: this.props.route.data[index].list,
+      total: this.props.route.data[index].total
     }
     this.addItem = this.addItem.bind(this);
     this.deleteItem = this.deleteItem.bind(this);
