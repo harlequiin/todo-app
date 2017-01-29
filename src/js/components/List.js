@@ -42,7 +42,7 @@ export default class List extends React.Component {
       <Link to="/lists">
         <button className="save-list">Return to Lists</button>
       </Link>
-        <AddItem addItem={this.addItem}/>
+        <AddItem addItem={this.addItem}>Add Item...</AddItem>
         <ul className="list-content">
           {listItems}
         </ul>
