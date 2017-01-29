@@ -6,11 +6,13 @@ import {Link} from 'react-router'
 export default class List extends React.Component {
   constructor(props) {
     super(props)
-    const index = this.props.route.data.findIndex((list) =>
+    const index = this.props.route.data.lists.findIndex((list) =>
       list.id == this.props.params.id);
+    console.log(index);
+    console.log(this.props.route.data.lists);
     this.state = {
-      listItems: this.props.route.data[index].list,
-      total: this.props.route.data[index].total
+      listItems: this.props.route.data.lists[index].list,
+      total: this.props.route.data.lists[index].total
     }
     this.addItem = this.addItem.bind(this);
     this.deleteItem = this.deleteItem.bind(this);
@@ -32,7 +34,6 @@ export default class List extends React.Component {
     this.props.route.saveList(this.props.params.id, this.state.total, this.state.listItems);
   }
   render() {
-    console.log("rendering");
     const listItems = this.state.listItems.map((item) =>
       <ListItem key={item.id} 
                 id={item.id} 
