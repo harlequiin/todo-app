@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Router, Route, IndexRoute, Link, hashHistory} from 'react-router';
+import {Router, Route, IndexRedirect, Link, hashHistory} from 'react-router';
 import App from './components/App';
 import List from './components/List';
 import Menu from './components/Menu'
@@ -51,20 +51,22 @@ let Store = {
       this.lists[index].list = list;
     },
     deleteList(newlists) {
-      this.lists = newlists;
-      console.log(this.lists)
+      this.lists = newlists.slice();
+      console.log(Store.lists);
     }
 };
-
+let i = 0;
 class AppRoute extends React.Component {
   render() {
     return (
       <Router history={hashHistory}>
         <Route path="/" component={App}>
-          <IndexRoute data={Store.lists} 
+          <IndexRedirect to="/lists"/>
+          <Route path="/lists"data={Store} 
+                      index={i++}
                       component={Menu}
                       deleteList={Store.deleteList.bind(Store)}/>
-          <Route path="/:id" 
+          <Route path="/lists/:id" 
                  data={Store.lists} 
                  component={List}
                  saveList={Store.saveList.bind(Store)}/>
