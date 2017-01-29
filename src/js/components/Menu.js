@@ -6,7 +6,7 @@ export default class Menu extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      lists: this.props.route.data
+      lists: this.props.route.data.lists
     }
   }
   deleteItem(id) {
@@ -15,14 +15,17 @@ export default class Menu extends React.Component {
         list.id != id)}
     ))
   }
-  componentWillUnmount() {
+  /*componentDidUpdate() {
     console.log('Menu update');
     this.props.route.deleteList(this.state.lists);
   }
+  */  // interesting, look into it
   render() {
+    this.props.route.deleteList(this.state.lists);
+    console.log("rendering")
     const lists = this.state.lists;
     const listItems = lists.map((list) => 
-      <ListItem text={<Link to={"/"+list.id}>{list.name}</Link>}
+      <ListItem text={<Link to={"/lists/"+list.id}>{list.name}</Link>}
                 key={list.id}
                 id={list.id}
                 total={list.total}
