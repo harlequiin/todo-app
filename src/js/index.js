@@ -46,18 +46,16 @@ let Store = {
         text: 'Fix washing machine'
       }]
     }],
-    saveList(id, last, list) {
-      console.log('pushState');
-      console.log(last);
+    saveList(id, total, list) {
+      console.log('saveList');
       const index = this.lists.findIndex((list) =>
         list.id == id);
       this.lists[index].list = list;
-      this.last = last;
+      this.lists[index].total = total;
     },
     saveState(newlists, newLast) {
       this.lists = newlists.slice();
       this.last = newLast;
-      console.log(this.lists);
     }
 };
 class AppRoute extends React.Component {
@@ -68,9 +66,9 @@ class AppRoute extends React.Component {
           <IndexRedirect to="/lists"/>
           <Route path="/lists"data={Store} 
                       component={Menu}
-                      saveState={Store.pushState.bind(Store)}/>
+                      saveState={Store.saveState.bind(Store)}/>
           <Route path="/lists/:id" 
-                 data={Store.lists} 
+                 data={Store} 
                  component={List}
                  saveList={Store.saveList.bind(Store)}/>
         </Route>
