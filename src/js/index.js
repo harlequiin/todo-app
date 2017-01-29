@@ -47,7 +47,6 @@ let Store = {
       }]
     }],
     saveList(id, total, list) {
-      console.log('saveList');
       const index = this.lists.findIndex((list) =>
         list.id == id);
       this.lists[index].list = list;
