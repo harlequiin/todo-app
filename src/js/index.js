@@ -54,7 +54,7 @@ let Store = {
       this.lists[index].list = list;
       this.last = last;
     },
-    pushState(newlists, newLast) {
+    saveState(newlists, newLast) {
       this.lists = newlists.slice();
       this.last = newLast;
       console.log(this.lists);
@@ -68,7 +68,7 @@ class AppRoute extends React.Component {
           <IndexRedirect to="/lists"/>
           <Route path="/lists"data={Store} 
                       component={Menu}
-                      pushState={Store.pushState.bind(Store)}/>
+                      saveState={Store.pushState.bind(Store)}/>
           <Route path="/lists/:id" 
                  data={Store.lists} 
                  component={List}
