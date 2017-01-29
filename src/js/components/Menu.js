@@ -15,13 +15,11 @@ export default class Menu extends React.Component {
         list.id != id)}
     ))
   }
-  /*componentDidUpdate() {
+  componentDidUpdate() {
     console.log('Menu update');
     this.props.route.deleteList(this.state.lists);
   }
-  */  // interesting, look into it
   render() {
-    this.props.route.deleteList(this.state.lists);
     console.log("rendering")
     const lists = this.state.lists;
     const listItems = lists.map((list) => 
