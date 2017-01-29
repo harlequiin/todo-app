@@ -9,7 +9,6 @@ export default class List extends React.Component {
     const index = this.props.route.data.findIndex((list) =>
       list.id == this.props.params.id);
     this.state = {
-      // fix filtering items: arrays not working
       listItems: this.props.route.data[index].list,
       total: this.props.route.data[index].total
     }

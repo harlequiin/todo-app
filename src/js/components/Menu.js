@@ -1,13 +1,16 @@
-import React from 'react'
+import React from 'react';
 import {Link} from 'react-router';
+import AddItem from './AddItem';
 import ListItem from './ListItem';
 
 export default class Menu extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      lists: this.props.route.data.lists
+      lists: this.props.route.data.lists,
+      last: this.props.route.data.last
     }
+    this.addItem = this.addItem.bind(this);
   }
   deleteItem(id) {
     this.setState((prevState)=>(
@@ -15,12 +18,24 @@ export default class Menu extends React.Component {
         list.id != id)}
     ))
   }
+  addItem(e) {
+    this.setState({
+      lists: this.state.lists.concat([{
+        name: e.target.previousSibling.value,
+        id: this.state.last + 1, 
+        total: 0,
+        list:[]
+      }]),
+      last: this.state.last + 1
+    })
+    e.target.previousSibling.value = '';
+  }
   componentDidUpdate() {
     console.log('Menu update');
-    this.props.route.deleteList(this.state.lists);
+    console.log(this.state.last)
+    this.props.route.pushState(this.state.lists, this.state.last);
   }
   render() {
-    console.log("rendering")
     const lists = this.state.lists;
     const listItems = lists.map((list) => 
       <ListItem text={<Link to={"/lists/"+list.id}>{list.name}</Link>}
@@ -35,6 +50,7 @@ export default class Menu extends React.Component {
         <ul className="list-content">
           {listItems}
         </ul>
+      <AddItem addItem={this.addItem}>Add List...</AddItem>
       </div>
     );
   }

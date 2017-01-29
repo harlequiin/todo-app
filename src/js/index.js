@@ -6,6 +6,7 @@ import List from './components/List';
 import Menu from './components/Menu'
 
 let Store = {
+  last: 1,
   lists:[
     {
       name: 'Groceries',
@@ -45,17 +46,20 @@ let Store = {
         text: 'Fix washing machine'
       }]
     }],
-    saveList(id, total, list) {
+    saveList(id, last, list) {
+      console.log('pushState');
+      console.log(last);
       const index = this.lists.findIndex((list) =>
         list.id == id);
       this.lists[index].list = list;
+      this.last = last;
     },
-    deleteList(newlists) {
+    pushState(newlists, newLast) {
       this.lists = newlists.slice();
-      console.log(Store.lists);
+      this.last = newLast;
+      console.log(this.lists);
     }
 };
-let i = 0;
 class AppRoute extends React.Component {
   render() {
     return (
@@ -63,9 +67,8 @@ class AppRoute extends React.Component {
         <Route path="/" component={App}>
           <IndexRedirect to="/lists"/>
           <Route path="/lists"data={Store} 
-                      index={i++}
                       component={Menu}
-                      deleteList={Store.deleteList.bind(Store)}/>
+                      pushState={Store.pushState.bind(Store)}/>
           <Route path="/lists/:id" 
                  data={Store.lists} 
                  component={List}
