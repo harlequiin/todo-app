@@ -8,8 +8,6 @@ export default class List extends React.Component {
     super(props)
     const index = this.props.route.data.lists.findIndex((list) =>
       list.id == this.props.params.id);
-    console.log(index);
-    console.log(this.props.route.data.lists);
     this.state = {
       listItems: this.props.route.data.lists[index].list,
       total: this.props.route.data.lists[index].total

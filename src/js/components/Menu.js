@@ -31,9 +31,7 @@ export default class Menu extends React.Component {
     e.target.previousSibling.value = '';
   }
   componentDidUpdate() {
-    console.log('Menu update');
-    console.log(this.state.last)
-    this.props.route.pushState(this.state.lists, this.state.last);
+    this.props.route.saveState(this.state.lists, this.state.last);
   }
   render() {
     const lists = this.state.lists;
